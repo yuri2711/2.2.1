@@ -7,6 +7,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -29,12 +31,18 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public User getUser(String model, int seriesCar) {
-        Query<User> user = sessionFactory.getCurrentSession()
-                .createQuery("SELECT u from User u WHERE u.car.series = :ser and u.car.model = :mod")
-                .setParameter("ser", seriesCar)
-                .setParameter("mod", model);
+        Query<User> user = null;
 
-        return user.getSingleResult();
+        try {
+            user = sessionFactory.getCurrentSession()
+                    .createQuery("SELECT u from User u WHERE u.car.series = :ser and u.car.model = :mod")
+                    .setParameter("ser", seriesCar)
+                    .setParameter("mod", model);
+            return user.getSingleResult();
+        }catch (NoResultException e){
+            System.out.println("Не найден элемент");
+            return null;
+        }
     }
 
 }
