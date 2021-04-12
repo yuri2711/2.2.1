@@ -23,17 +23,17 @@ public class MainApp {
         userService.add(userss2);
 
         List<User> users = userService.listUsers();
-//        for (User user : users) {
-//            System.out.println("Id = " + user.getId());
-//            System.out.println("First Name = " + user.getFirstName());
-//            System.out.println("Last Name = " + user.getLastName());
-//            System.out.println("Email = " + user.getEmail());
-//            System.out.println("car = " + user.getCar().getModel());
-//            System.out.println("car_series = " + user.getCar().getSeries());
-//            System.out.println();
-//        }
+        for (User user : users) {
+            System.out.println("Id = " + user.getId());
+            System.out.println("First Name = " + user.getFirstName());
+            System.out.println("Last Name = " + user.getLastName());
+            System.out.println("Email = " + user.getEmail());
+            System.out.println("car = " + user.getCar().getModel());
+            System.out.println("car_series = " + user.getCar().getSeries());
+            System.out.println();
+        }
 
-        userService.getUser(8);
+        userService.getUser("Audi A",8);
 
         context.close();
     }
