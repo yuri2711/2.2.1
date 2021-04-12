@@ -28,8 +28,8 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public User getUser(int series_car) {
-      return userDao.getUser(series_car);
+   public User getUser(String model, int seriesCar) {
+      return userDao.getUser(model,seriesCar);
    }
 
 }
